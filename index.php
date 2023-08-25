@@ -35,13 +35,6 @@ if (\version_compare(PHP_VERSION, '7.4.0') === -1) {
 	return;
 }
 
-// Show warning if PHP 8.0 or later is used as ownCloud is not compatible with PHP 8.0
-if (\version_compare(PHP_VERSION, '8.0.0') !== -1) {
-	echo 'This version of ownCloud is not compatible with PHP 8.0<br/>';
-	echo 'You are currently running PHP ' . PHP_VERSION . '.';
-	return;
-}
-
 // running oC on Windows is unsupported since 8.1, this has to happen here because
 // is seems that the autoloader on Windows fails later and just throws an exception.
 if (\stripos(PHP_OS, 'WIN') === 0) {

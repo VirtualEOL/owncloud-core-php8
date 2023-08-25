@@ -36,18 +36,22 @@ class CacheEntry implements ICacheEntry, \ArrayAccess {
 		$this->data = $data;
 	}
 
+	#[\ReturnTypeWillChange]
 	public function offsetSet($offset, $value) {
 		$this->data[$offset] = $value;
 	}
 
+	#[\ReturnTypeWillChange]
 	public function offsetExists($offset) {
 		return isset($this->data[$offset]);
 	}
 
+	#[\ReturnTypeWillChange]
 	public function offsetUnset($offset) {
 		unset($this->data[$offset]);
 	}
 
+	#[\ReturnTypeWillChange]
 	public function offsetGet($offset) {
 		if (isset($this->data[$offset])) {
 			return $this->data[$offset];

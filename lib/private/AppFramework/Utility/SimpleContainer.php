@@ -50,7 +50,9 @@ class SimpleContainer extends Container implements IContainer {
 		} else {
 			$parameters = [];
 			foreach ($constructor->getParameters() as $parameter) {
-				$parameterClass = $parameter->getClass();
+				$parameterClass = $parameter->getType() && !$parameter->getType()->isBuiltin()
+				   ? new ReflectionClass($parameter->getType()->getName())
+				   : null;
 
 				// try to find out if it is a class or a simple parameter
 				if ($parameterClass === null) {

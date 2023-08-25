@@ -66,12 +66,13 @@ class OC_L10N_String implements JsonSerializable {
 
 		// Replace %n first (won't interfere with vsprintf)
 		$text = \str_replace('%n', $this->count, $text);
-		$text = @\vsprintf($text, $this->parameters);
+		$text = @\vsprintf($text, (array)$this->parameters);
 
 		// If vsprintf fails, return untranslated string
 		return $text === false ? $this->text : $text;
 	}
 
+	#[\ReturnTypeWillChange]
 	public function jsonSerialize() {
 		return $this->__toString();
 	}

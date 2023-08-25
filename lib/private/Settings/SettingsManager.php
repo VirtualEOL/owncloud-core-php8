@@ -482,7 +482,7 @@ class SettingsManager implements ISettingsManager {
 		\usort($objects, function ($a, $b) {
 			/** @var ISection | ISettings $a */
 			/** @var ISection | ISettings $b */
-			return $a->getPriority() < $b->getPriority();
+			return $a->getPriority() < $b->getPriority() ? 1 : -1;
 		});
 		return $objects;
 	}

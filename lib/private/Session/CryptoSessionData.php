@@ -177,6 +177,7 @@ class CryptoSessionData implements \ArrayAccess, ISession {
 	 * @param mixed $offset
 	 * @return bool
 	 */
+	#[\ReturnTypeWillChange]
 	public function offsetExists($offset) {
 		return $this->exists($offset);
 	}
@@ -185,6 +186,7 @@ class CryptoSessionData implements \ArrayAccess, ISession {
 	 * @param mixed $offset
 	 * @return mixed
 	 */
+	#[\ReturnTypeWillChange]
 	public function offsetGet($offset) {
 		return $this->get($offset);
 	}
@@ -193,6 +195,7 @@ class CryptoSessionData implements \ArrayAccess, ISession {
 	 * @param mixed $offset
 	 * @param mixed $value
 	 */
+	#[\ReturnTypeWillChange]
 	public function offsetSet($offset, $value) {
 		$this->set($offset, $value);
 	}
@@ -200,6 +203,7 @@ class CryptoSessionData implements \ArrayAccess, ISession {
 	/**
 	 * @param mixed $offset
 	 */
+	#[\ReturnTypeWillChange]
 	public function offsetUnset($offset) {
 		$this->remove($offset);
 	}

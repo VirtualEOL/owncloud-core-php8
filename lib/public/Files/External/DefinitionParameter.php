@@ -160,6 +160,7 @@ class DefinitionParameter implements \JsonSerializable {
 	 * @return string
 	 * @since 10.0
 	 */
+	#[\ReturnTypeWillChange]
 	public function jsonSerialize() {
 		return [
 			'value' => $this->getText(),

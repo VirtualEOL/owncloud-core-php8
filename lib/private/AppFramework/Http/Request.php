@@ -162,6 +162,7 @@ class Request implements \ArrayAccess, \Countable, IRequest {
 	 * Countable method
 	 * @return int
 	 */
+	#[\ReturnTypeWillChange]
 	public function count() {
 		return \count(\array_keys($this->items['parameters']));
 	}
@@ -186,6 +187,7 @@ class Request implements \ArrayAccess, \Countable, IRequest {
 	* @param string $offset The key to lookup
 	* @return boolean
 	*/
+	#[\ReturnTypeWillChange]
 	public function offsetExists($offset) {
 		return isset($this->items['parameters'][$offset]);
 	}
@@ -193,6 +195,7 @@ class Request implements \ArrayAccess, \Countable, IRequest {
 	/**
 	* @see offsetExists
 	*/
+	#[\ReturnTypeWillChange]
 	public function offsetGet($offset) {
 		return isset($this->items['parameters'][$offset])
 			? $this->items['parameters'][$offset]
@@ -202,6 +205,7 @@ class Request implements \ArrayAccess, \Countable, IRequest {
 	/**
 	* @see offsetExists
 	*/
+	#[\ReturnTypeWillChange]
 	public function offsetSet($offset, $value) {
 		throw new \RuntimeException('You cannot change the contents of the request object');
 	}
@@ -209,6 +213,7 @@ class Request implements \ArrayAccess, \Countable, IRequest {
 	/**
 	* @see offsetExists
 	*/
+	#[\ReturnTypeWillChange]
 	public function offsetUnset($offset) {
 		throw new \RuntimeException('You cannot change the contents of the request object');
 	}
@@ -418,7 +423,7 @@ class Request implements \ArrayAccess, \Countable, IRequest {
 		$params = [];
 
 		// 'application/json' must be decoded manually.
-		if (\strpos($this->getHeader('Content-Type'), 'application/json') !== false) {
+		if (\strpos($this->getHeader('Content-Type') ?? '', 'application/json') !== false) {
 			$params = \json_decode(\file_get_contents($this->inputStream), true);
 			if (\is_array($params) && \count($params) > 0) {
 				$this->items['params'] = $params;

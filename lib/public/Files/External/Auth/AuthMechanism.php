@@ -96,6 +96,7 @@ abstract class AuthMechanism implements \JsonSerializable {
 	 * @return array
 	 * @since 10.0
 	 */
+	#[\ReturnTypeWillChange]
 	public function jsonSerialize() {
 		$data = $this->jsonSerializeDefinition();
 		$data += $this->jsonSerializeIdentifier();
